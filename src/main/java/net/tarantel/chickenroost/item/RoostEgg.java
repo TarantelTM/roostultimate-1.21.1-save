@@ -2,6 +2,7 @@ package net.tarantel.chickenroost.item;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
@@ -20,8 +21,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class RoostEgg extends EggItem {
-    public EntityType entity;
-    public RoostEgg(EntityType entity, Properties properties) {
+    public ResourceLocation entity;
+    public RoostEgg(ResourceLocation entity, Properties properties) {
         super( properties);
         this.entity = entity;
     }
@@ -30,7 +31,8 @@ public class RoostEgg extends EggItem {
         ItemStack itemstack = player.getItemInHand(hand);
         level.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!level.isClientSide) {
-            RoostThrownEgg thrownegg = new RoostThrownEgg(level, player, entity);
+            EntityType entityType = EntityType.byString(this.entity.toString()).orElse(EntityType.CHICKEN);
+            RoostThrownEgg thrownegg = new RoostThrownEgg(level, player, entityType);
             thrownegg.setItem(itemstack);
             thrownegg.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
             level.addFreshEntity(thrownegg);

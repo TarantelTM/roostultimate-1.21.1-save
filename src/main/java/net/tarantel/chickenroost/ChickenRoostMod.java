@@ -24,10 +24,7 @@ import net.tarantel.chickenroost.entity.ModEntities;
 import net.tarantel.chickenroost.handler.ModHandlers;
 import net.tarantel.chickenroost.item.ModItems;
 import net.tarantel.chickenroost.recipes.ModRecipes;
-import net.tarantel.chickenroost.util.Config;
-import net.tarantel.chickenroost.util.ModDataComponents;
-import net.tarantel.chickenroost.util.ModEntitySpawnMob;
-import net.tarantel.chickenroost.util.ModEntitySpawnMonster;
+import net.tarantel.chickenroost.util.*;
 import org.slf4j.Logger;
 
 import java.io.FileNotFoundException;
@@ -43,10 +40,11 @@ public class ChickenRoostMod {
     //endregion
     public ChickenRoostMod(IEventBus bus, ModContainer modContainer) throws FileNotFoundException {
         bus.addListener(this::commonSetup);
+        GsonChickenReader.readItemsFromFile();
         ModCreativeModeTabs.register(bus);
         ModDataComponents.register(bus);
         ModItems.register(bus);
-        ModEntities.ENTITIES.register(bus);
+        ModEntities.REGISTRY.register(bus);
         ModEntitySpawnMonster.SERIALIZER.register(bus);
         ModEntitySpawnMob.SERIALIZER.register(bus);
 
@@ -112,7 +110,7 @@ public class ChickenRoostMod {
         }
         @SubscribeEvent
         public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-            event.register(ModEntities.A_CHICKEN_SPRUCEWOOD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+            /*event.register(ModEntities.A_CHICKEN_SPRUCEWOOD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 
             event.register(ModEntities.A_CHICKEN_DARK_OAK.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
@@ -189,7 +187,7 @@ public class ChickenRoostMod {
 
             event.register(ModEntities.A_CHICKEN_JUNGLE_WOOD.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                     Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-
+*/
 
         }
     }
