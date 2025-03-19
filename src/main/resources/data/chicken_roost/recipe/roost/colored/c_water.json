@@ -1,0 +1,21 @@
+{
+  "type": "chicken_roost:roost_output",
+  "food": {
+    "tag": "c:seeds/tier2orup"
+  },
+  "chicken": {
+    "item": "chicken_roost:c_water"
+  },
+  "time": 20,
+  "output": {
+    "item": "chicken_roost:water_egg",
+    "components": {
+      "bucketlib:fluid":
+      {
+        "amount": 1000,
+        "id": "minecraft:water"
+      }
+
+    }
+  }
+}
