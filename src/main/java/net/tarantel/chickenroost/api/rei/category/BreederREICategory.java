@@ -46,30 +46,6 @@ public class BreederREICategory implements DisplayCategory<BreederREIDisplay> {
         return Component.literal("Breeder");
     }
 
-    /*@Override
-    public List<Widget> setupDisplay(BreederREIDisplay display, Rectangle bounds) {
-        // Setup background
-        Point startPoint = new Point(bounds.getCenterX() - 36, bounds.getCenterY() - 10);
-        List<Widget> widgets = Lists.newArrayList();
-        bounds.setSize(130, 20);
-        widgets.add(Widgets.createRecipeBase(bounds));
-
-        // Add arrow
-        widgets.add(createAnimatedArrow(startPoint.x + 4, startPoint.y + 4));
-
-        //Add output slot
-        widgets.add(Widgets.createSlotBackground(new Point(startPoint.x + 61, startPoint.y + 0)));
-        widgets.add(createOutputSlot(display, 0, startPoint.x + 61, startPoint.y + 0));
-
-        // Add input slots
-        int x = startPoint.x-14;
-        int y = startPoint.y;
-        widgets.add(createInputSlot(display, 0, x, y));
-        widgets.add(createInputSlot(display, 1, x+SLOT_SIZE, y));
-        widgets.add(createInputSlot(display, 2, x+SLOT_SIZE+SLOT_SIZE, y));
-        return widgets;
-    }*/
-
     @Override
     public List<Widget> setupDisplay(BreederREIDisplay display, Rectangle bounds) {
         Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);

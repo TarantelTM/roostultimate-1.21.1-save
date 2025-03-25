@@ -15,15 +15,12 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,8 +35,6 @@ import net.tarantel.chickenroost.util.Config;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -67,7 +62,6 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
         }
     };
 
-   // private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     public ItemStack getRenderStack() {
         ItemStack stack;
@@ -87,12 +81,12 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
     }
     protected final ContainerData data;
     public int progress = 0;
-    public int maxProgress = ((int) Config.extractor_speedtimer.get() * 20);
+    public int maxProgress = (Config.extractor_speedtimer.get() * 20);
 
     public int getScaledProgress() {
         int progresss = progress;
-        int maxProgresss = maxProgress;  // Max Progress
-        int progressArrowSize = 200; // This is the height in pixels of your arrow
+        int maxProgresss = maxProgress;
+        int progressArrowSize = 200;
 
         return maxProgresss != 0 && progresss != 0 ? progresss * progressArrowSize / maxProgresss : 0;
     }
@@ -147,18 +141,10 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
     @Override
     public void onLoad() {
         super.onLoad();
-       // lazyItemHandler = LazyOptional.of(() -> itemHandler);
         if(!level.isClientSide()) {
-          ///  ModMessages.sendToClients(new ExtractorStackSyncS2CPacket(this.itemHandler, worldPosition));
         }
         setChanged();
     }
-
-   /*@Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-    }*/
 
     @Override
     public void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup) {
@@ -183,13 +169,9 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             items.set(i, itemHandler.getStackInSlot(i));
         }
-        //items.set(0, itemHandler.getStackInSlot(0));
-        //items.set(1, itemHandler.getStackInSlot(2));
-        //itemStack.getItem().components().getOrDefault(DataComponents.CONTAINER, items);
         itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(inventory.getItems()));
         block.setItem(0, itemStack.copy());
 
-        //System.out.println(itemStack.get(DataComponents.CONTAINER));
         Containers.dropContents(Objects.requireNonNull(this.level), this.worldPosition, block);
     }
 
@@ -199,7 +181,6 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
             return;
         }
         setChanged(level, pos, state);
-      ///  ModMessages.sendToClients(new ExtractorStackSyncS2CPacket(pEntity.itemHandler, pEntity.worldPosition));
         if(hasRecipe(pEntity)) {
             pEntity.progress++;
             if(pEntity.progress >= pEntity.maxProgress) {
@@ -237,7 +218,6 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
         }
 
         if(hasRecipe(pEntity)) {
-            //pEntity.itemHandler.extractItem(0, 1, false);
             pEntity.itemHandler.extractItem(0, 1, false);
             pEntity.itemHandler.setStackInSlot(1, new ItemStack(recipe.get().value().output.copy().getItem(),
                     pEntity.itemHandler.getStackInSlot(1).getCount() + 1));
@@ -264,16 +244,11 @@ public class Soul_Extractor_Tile extends BlockEntity implements MenuProvider {
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
-
-        /*Optional<RecipeHolder<Soul_Extractor_Recipe>> recipe = level.getRecipeManager()
-                .getRecipeFor(Soul_Extractor_Recipe.Type.INSTANCE, inventory, level);*/
         Optional<RecipeHolder<Soul_Extractor_Recipe>> recipe = Optional.empty();
         if (level != null) {
             recipe = level.getRecipeManager().getRecipeFor(ModRecipes.SOUL_EXTRACTION_TYPE.get(), getRecipeInput(inventory), level);
             if(recipe.isPresent()){
                 entity.maxProgress = ( Config.extractor_speedtimer.get() * recipe.get().value().time);
-                //System.out.println(recipe.get().value().time);
-                //System.out.println("max:" + entity.maxProgress);
             }
         }
 

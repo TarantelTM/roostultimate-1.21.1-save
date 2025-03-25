@@ -19,7 +19,6 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.tarantel.chickenroost.block.blocks.crops.*;
 import net.tarantel.chickenroost.item.ModItems;
-import net.tarantel.chickenroost.item.base.ChickenBlockItem;
 
 import java.util.function.Supplier;
 

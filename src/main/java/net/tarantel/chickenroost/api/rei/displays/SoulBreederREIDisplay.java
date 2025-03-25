@@ -7,12 +7,8 @@ import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tarantel.chickenroost.ChickenRoostMod;
-import net.tarantel.chickenroost.api.rei.REICategoryIdentifiers;
-import net.tarantel.chickenroost.api.rei.REIRecipeDisplay;
 
-import net.tarantel.chickenroost.recipes.Roost_Recipe;
 import net.tarantel.chickenroost.recipes.Soul_Breeder_Recipe;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;

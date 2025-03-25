@@ -20,11 +20,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -32,17 +30,17 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import net.tarantel.chickenroost.ChickenRoostMod;
 import net.tarantel.chickenroost.block.blocks.ModBlocks;
 import net.tarantel.chickenroost.handler.Roost_Handler;
-import net.tarantel.chickenroost.item.base.*;
+import net.tarantel.chickenroost.item.base.ChickenItemBase;
+import net.tarantel.chickenroost.item.base.ChickenSeedBase;
 import net.tarantel.chickenroost.recipes.ModRecipes;
 import net.tarantel.chickenroost.recipes.Roost_Recipe;
 import net.tarantel.chickenroost.util.Config;
 import net.tarantel.chickenroost.util.ModDataComponents;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.openjdk.nashorn.internal.runtime.logging.DebugLogger;
-import org.openjdk.nashorn.internal.runtime.logging.Logger;
 
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
 
 public class Roost_Tile extends BlockEntity implements MenuProvider {
     public final ItemStackHandler itemHandler = new ItemStackHandler(3) {
@@ -52,9 +50,6 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
             if(slot == 1){
                 resetProgress();
             }
-            /*if(!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
-            }*/
         }
         @Override
         public int getSlotLimit(int slot)
@@ -112,8 +107,8 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
 
     public int getScaledProgress() {
         int progresss = progress;
-        int maxProgresss = maxProgress;  // Max Progress
-        int progressArrowSize = 200; // This is the height in pixels of your arrow
+        int maxProgresss = maxProgress;
+        int progressArrowSize = 200;
 
         return maxProgresss != 0 && progresss != 0 ? progresss * progressArrowSize / maxProgresss : 0;
     }
@@ -168,8 +163,6 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
     @Override
     public void onLoad() {
         super.onLoad();
-        /*if (level != null)
-            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);*/
         setChanged();
         getRenderStack();
 
@@ -198,13 +191,9 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             items.set(i, itemHandler.getStackInSlot(i));
         }
-        //items.set(0, itemHandler.getStackInSlot(0));
-        //items.set(1, itemHandler.getStackInSlot(2));
-        //itemStack.getItem().components().getOrDefault(DataComponents.CONTAINER, items);
         itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(inventory.getItems()));
         block.setItem(0, itemStack.copy());
 
-        //System.out.println(itemStack.get(DataComponents.CONTAINER));
         Containers.dropContents(Objects.requireNonNull(this.level), this.worldPosition, block);
     }
 
@@ -271,8 +260,19 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
         RecipeHolder<Roost_Recipe> recipeholder = (RecipeHolder)recipe.get();
         Roost_Recipe craftingrecipe = (Roost_Recipe)recipeholder.value();
         if (hasRecipe(pEntity)) {
-            int ChickenLevel = (int) (ChickenItem.get(ModDataComponents.CHICKENLEVEL.value()) / 2 + recipe.get().value().output.getCount());
-            int ChickenXP = ChickenItem.get(ModDataComponents.CHICKENXP.value());
+            int ChickenLevel;
+            int ChickenXP;
+            if(ChickenItem.has(ModDataComponents.CHICKENLEVEL) && ChickenItem.has(ModDataComponents.CHICKENXP)){
+                ChickenLevel = (ChickenItem.get(ModDataComponents.CHICKENLEVEL.value()) / 2 + recipe.get().value().output.getCount());
+                ChickenXP = ChickenItem.get(ModDataComponents.CHICKENXP.value());
+            }
+            else {
+                ChickenLevel = 0;
+                ChickenXP = 0;
+                ChickenItem.set(ModDataComponents.CHICKENLEVEL.value(), ChickenLevel);
+                ChickenItem.set(ModDataComponents.CHICKENXP.value(), ChickenXP);
+            }
+
             ItemStack itemstack1 = recipe.get().value().assemble( getRecipeInput(inventory),level.registryAccess());
             itemstack1.setCount(pEntity.itemHandler.getStackInSlot(2).getCount() + ChickenLevel);
 
@@ -294,14 +294,12 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
                     pEntity.itemHandler.setStackInSlot(1, ChickenItem);
                     pEntity.itemHandler.setStackInSlot(2, itemstack1.copy());
 
-                    System.out.println(itemstack1.getDisplayName());
                     pEntity.resetProgress();
                 }
                 else {
                     pEntity.itemHandler.extractItem(0, 1, false);
                     pEntity.itemHandler.extractItem(1, 0, true);
                     pEntity.itemHandler.setStackInSlot(2, itemstack1.copy());
-                    System.out.println(itemstack1.getDisplayName());
                     pEntity.resetProgress();
                 }
             }
@@ -322,8 +320,6 @@ public class Roost_Tile extends BlockEntity implements MenuProvider {
             recipe = level.getRecipeManager().getRecipeFor(ModRecipes.ROOST_TYPE.get(), getRecipeInput(inventory), level);
             if(recipe.isPresent()){
                 entity.maxProgress = ( Config.roost_speed_tick.get() * recipe.get().value().time);
-                //System.out.println(recipe.get().value().time);
-               // System.out.println("max:" + entity.maxProgress);
             }
         }
 

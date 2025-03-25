@@ -2,24 +2,17 @@ package net.tarantel.chickenroost.item.base;
 
 
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -39,9 +32,6 @@ import net.minecraft.world.phys.HitResult;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidUtil;
-import net.neoforged.neoforge.fluids.SimpleFluidContent;
-import net.neoforged.neoforge.fluids.capability.templates.FluidHandlerItemStack;
-import net.neoforged.neoforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
@@ -119,8 +109,6 @@ public class LiquidEgg extends BucketItem {
     public void checkExtraContent(@Nullable Player player, Level level, ItemStack containerStack, BlockPos pos) {
     }
 
-    /** @deprecated */
-    @Deprecated
     public boolean emptyContents(@Nullable Player player, Level level, BlockPos pos, @Nullable BlockHitResult result) {
         return this.emptyContents(player, level, pos, result, (ItemStack)null);
     }

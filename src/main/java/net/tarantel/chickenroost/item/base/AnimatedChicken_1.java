@@ -3,11 +3,8 @@ package net.tarantel.chickenroost.item.base;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
@@ -17,18 +14,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.Spawner;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
@@ -37,13 +30,11 @@ import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.tarantel.chickenroost.ChickenRoostMod;
 import net.tarantel.chickenroost.item.renderer.AnimatedChickenRenderer_1;
 import net.tarantel.chickenroost.util.Config;
-import net.tarantel.chickenroost.util.EntityTagManager;
 import net.tarantel.chickenroost.util.ModDataComponents;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.util.RenderUtil;
 
@@ -103,8 +94,12 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
                 if (entity == null) {
                     return InteractionResult.PASS;
                 } else {
-                    entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                    entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                    }
+                    if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    }
                     itemstack.consume(1, context.getPlayer());
                     context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
                     level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
@@ -118,14 +113,17 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
                     if (entity == null) {
                         return InteractionResult.PASS;
                     } else {
-                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                            entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                        }
+                        if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                            entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        }
                         itemstack.consume(1, context.getPlayer());
                         context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
                         level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
                     }
                 }
-                //EntityType<?> entitytype = (BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(context.getItemInHand().getItem().getDefaultInstance().getItemHolder().getRegisteredName().toString())));
 
 
             return InteractionResult.CONSUME;
@@ -152,8 +150,12 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
                     if (entity == null) {
                         return InteractionResultHolder.pass(itemstack);
                     } else {
-                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                            entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                        }
+                        if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                            entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        }
                         itemstack.consume(1, player);
                         player.awardStat(Stats.ITEM_USED.get(this));
                         level.gameEvent(player, GameEvent.ENTITY_PLACE, entity.position());
@@ -166,8 +168,12 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
                     if (entity == null) {
                         return InteractionResultHolder.pass(itemstack);
                     } else {
-                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                            entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                        }
+                        if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                            entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        }
                         itemstack.consume(1, player);
                         player.awardStat(Stats.ITEM_USED.get(this));
                         level.gameEvent(player, GameEvent.ENTITY_PLACE, entity.position());
@@ -184,9 +190,17 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
     @Override
     public void appendHoverText(ItemStack itemstack, TooltipContext context, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, context, list, flag);
+        int level = 0;
+        int xp = 0;
+        if(itemstack.has(ModDataComponents.CHICKENLEVEL)){
+            level = itemstack.get(ModDataComponents.CHICKENLEVEL.value());
+        }
+        if(itemstack.has(ModDataComponents.CHICKENXP)){
+            xp = itemstack.get(ModDataComponents.CHICKENXP.value());
+        }
         list.add(Component.nullToEmpty("\u00A71" + "Tier: " + "\u00A79" + "1"));
-        list.add(Component.nullToEmpty((("\u00A7e") + "Level: " + "\u00A79" + ((itemstack.get(ModDataComponents.CHICKENLEVEL))) + "/" + (((int) Config.maxlevel_tier_1.get())))));
-        list.add(Component.nullToEmpty((("\u00A7a") + "XP: " + "\u00A79" + ((itemstack.get(ModDataComponents.CHICKENXP))) + "/" + (((int) Config.xp_tier_1.get())))));
+        list.add(Component.nullToEmpty((("\u00A7e") + "Level: " + "\u00A79" + level + "/" + (((int) Config.maxlevel_tier_1.get())))));
+        list.add(Component.nullToEmpty((("\u00A7a") + "XP: " + "\u00A79" + xp + "/" + (((int) Config.xp_tier_1.get())))));
         list.add(Component.nullToEmpty("\u00A71 Roost Ultimate"));
     }
     private PlayState predicate(AnimationState animationState) {
@@ -229,29 +243,4 @@ public class AnimatedChicken_1 extends ChickenItemBase implements GeoItem {
     public float getDestroySpeed(ItemStack par1ItemStack, BlockState par2Block) {
         return 0F;
     }
-    /*private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
-        if (entity == null)
-            return;
-        ItemStack handchicken = ItemStack.EMPTY;
-        Entity outputchicken = null;
-        handchicken = (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);
-
-            if (handchicken.is(ItemTags.create(new ResourceLocation("c:roost/chickens")))) {
-                if (world instanceof ServerLevel _level)
-                    _level.getServer().getCommands().performPrefixedCommand(
-                            new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", Component.literal(""),
-                                    _level.getServer(), null).withSuppressedOutput(),
-                            ("summon " + handchicken.getItemHolder().getRegisteredName() + " ~ ~ ~ "
-                                    + "{PersistenceRequired:1b,NeoForgeData:{roost_lvl:" + handchicken.get(ModDataComponents.CHICKENLEVEL) + ","
-                                    + "roost_xp:" + handchicken.get(ModDataComponents.CHICKENXP) + "}}"));
-                if (entity instanceof Player _player) {
-                    ItemStack _stktoremove = handchicken;
-                    _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1,
-                            _player.inventoryMenu.getCraftSlots());
-                }
-            }
-
-    }*/
-
-
 }

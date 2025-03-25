@@ -16,9 +16,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tarantel.chickenroost.ChickenRoostMod;
-import net.tarantel.chickenroost.block.blocks.ModBlocks;
 import net.tarantel.chickenroost.item.ModItems;
-import net.tarantel.chickenroost.recipes.Soul_Breeder_Recipe;
 import net.tarantel.chickenroost.recipes.ThrowEggRecipe;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +25,6 @@ public class EggRecipeCategory implements IRecipeCategory<ThrowEggRecipe> {
     public final static ResourceLocation UID = ChickenRoostMod.ownresource("throwegg");
     public final static ResourceLocation ARROWBACK = ChickenRoostMod.ownresource("textures/screens/arrowback.png");
     public final static ResourceLocation SLOT = ChickenRoostMod.ownresource("textures/screens/slot.png");
-    //public static final RecipeType<Soul_Breeder_Recipe> RECIPE_TYPE = RecipeType.create(ChickenRoostMod.MODID, "soul_breeding", Soul_Breeder_Recipe.class);
     public static final RecipeType<ThrowEggRecipe> RECIPE_TYPE = new RecipeType<>(UID, ThrowEggRecipe.class);
     private final IDrawable background;
     private final IDrawable icon;
@@ -84,7 +81,6 @@ public class EggRecipeCategory implements IRecipeCategory<ThrowEggRecipe> {
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, ThrowEggRecipe recipe, @NotNull IFocusGroup focuses) {
-    	//super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 11, 1)
                 .addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 91, 1).addItemStack(recipe.output);

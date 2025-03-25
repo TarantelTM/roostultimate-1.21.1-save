@@ -1,6 +1,5 @@
 package net.tarantel.chickenroost.block.tile;
 
-import net.minecraft.client.gui.Gui;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -26,20 +25,15 @@ import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.neoforged.neoforge.common.util.Lazy;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.tarantel.chickenroost.ChickenRoostMod;
 import net.tarantel.chickenroost.block.blocks.ModBlocks;
 import net.tarantel.chickenroost.handler.Breeder_Handler;
-import net.tarantel.chickenroost.item.ModItems;
 import net.tarantel.chickenroost.item.base.*;
 import net.tarantel.chickenroost.recipes.Breeder_Recipe;
 import net.tarantel.chickenroost.recipes.ModRecipes;
 import net.tarantel.chickenroost.util.Config;
-import net.tarantel.chickenroost.util.ModDataComponents;
-import net.tarantel.chickenroost.util.WrappedHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

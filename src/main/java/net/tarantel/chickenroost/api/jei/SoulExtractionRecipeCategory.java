@@ -82,7 +82,6 @@ public class SoulExtractionRecipeCategory implements IRecipeCategory<Soul_Extrac
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, Soul_Extractor_Recipe recipe, @NotNull IFocusGroup focuses) {
-        //super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 25, 1)
                 .addIngredients(recipe.getIngredients().get(0));
 

@@ -3,7 +3,6 @@ package net.tarantel.chickenroost.item.model;
 import software.bernie.geckolib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 import net.tarantel.chickenroost.ChickenRoostMod;
-import net.tarantel.chickenroost.item.base.AnimatedSoulBreederBlockItem;
 import net.tarantel.chickenroost.item.base.AnimatedTrainerBlockItem;
 
 public class AnimatedTrainerBlockItemModel extends GeoModel<AnimatedTrainerBlockItem> {

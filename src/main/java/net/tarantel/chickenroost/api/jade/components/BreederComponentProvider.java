@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec2;
 import net.tarantel.chickenroost.api.jade.JadePlugin;
 import net.tarantel.chickenroost.block.tile.Breeder_Tile;
-import net.tarantel.chickenroost.block.tile.Roost_Tile;
 import snownee.jade.api.*;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IElement;

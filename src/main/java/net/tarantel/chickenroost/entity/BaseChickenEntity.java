@@ -4,17 +4,13 @@ package net.tarantel.chickenroost.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -30,8 +26,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.tarantel.chickenroost.util.ChickenConfig;
-
-import javax.annotation.Nullable;
 
 public class BaseChickenEntity extends Chicken {
     public int eggTime;
@@ -51,8 +45,6 @@ public class BaseChickenEntity extends Chicken {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-
-        // Initialize from static configuration
         this.dropStack = ChickenConfig.getDropStack(type);
         this.eggTime = ChickenConfig.getEggTime(type);
 
@@ -74,17 +66,6 @@ public class BaseChickenEntity extends Chicken {
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(3, new FloatGoal(this));
     }
-
-    /*@Override
-    public boolean isOnFire() {
-        if(IS_FIRE){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }*/
-
 
     @Override
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
@@ -227,17 +208,11 @@ public class BaseChickenEntity extends Chicken {
                 return false;
             }
         }
-        System.out.println("DamageSource: " + damageSource.toString());
         return super.hurt(damageSource, amount);
     }
 
     public static void init() {
     }
-    /*@Nullable
-    @Override
-    public Chicken getBreedOffspring(ServerLevel p_148884_, AgeableMob p_148885_) {
-        return (Chicken)ModEntities.A_CHICKEN_BLOOD.create(p_148885_);
-    }*/
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);

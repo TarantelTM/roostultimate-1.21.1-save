@@ -9,16 +9,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 
 public class ChickenStickTool {
-    /**
-     * Executes a process to handle entities of specific types by converting them into corresponding item entities
-     * with preserved data components, then spawning the item entities into the world and discarding the original entities.
-     *
-     * @param world The instance of the level or world where the operation is performed.
-     * @param x The x-coordinate where the item entity will be spawned.
-     * @param y The y-coordinate where the item entity will be spawned.
-     * @param z The z-coordinate where the item entity will be spawned.
-     * @param entity The entity to be processed and transformed into an item entity.
-     */
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity == null)
             return;
@@ -31,8 +21,6 @@ public class ChickenStickTool {
             itemchicken = new ItemStack(BuiltInRegistries.ITEM.get(myEntity));
             itemchicken.set(ModDataComponents.CHICKENLEVEL, entity.getPersistentData().getInt("chickenlevel"));
             itemchicken.set(ModDataComponents.CHICKENXP, entity.getPersistentData().getInt("chickenxp"));
-            //System.out.println(newentity);
-            //System.out.println(itemchicken);
             if (world instanceof Level _level && !_level.isClientSide()) {
                 ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, itemchicken);
                 entityToSpawn.setPickUpDelay(10);
@@ -49,7 +37,6 @@ public class ChickenStickTool {
             itemchicken = new ItemStack(BuiltInRegistries.ITEM.get(myEntity));
             itemchicken.set(ModDataComponents.CHICKENLEVEL, entity.getPersistentData().getInt("chickenlevel"));
             itemchicken.set(ModDataComponents.CHICKENXP, entity.getPersistentData().getInt("chickenxp"));
-            //System.out.println(newentity);
             if (world instanceof Level _level && !_level.isClientSide()) {
                 ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, itemchicken);
                 entityToSpawn.setPickUpDelay(10);

@@ -124,7 +124,6 @@ public class Breeder_Recipe implements Recipe<RecipeInput> {
         public StreamCodec<RegistryFriendlyByteBuf, Breeder_Recipe> streamCodec() {
             return STREAM_CODEC;
         }
-       // @Override
         private static  Breeder_Recipe read(RegistryFriendlyByteBuf buffer) {
             Ingredient input0 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
             Ingredient input1 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
@@ -135,7 +134,6 @@ public class Breeder_Recipe implements Recipe<RecipeInput> {
             return new Breeder_Recipe(output, input0, input1, input2, time);
         }
 
-        //@Override
         private static void write(RegistryFriendlyByteBuf buffer, Breeder_Recipe recipe) {
             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient0);
             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient1);

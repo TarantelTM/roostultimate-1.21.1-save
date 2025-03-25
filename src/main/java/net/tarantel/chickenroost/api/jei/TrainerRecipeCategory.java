@@ -82,7 +82,6 @@ public class TrainerRecipeCategory implements IRecipeCategory<Trainer_Recipe> {
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, Trainer_Recipe recipe, @NotNull IFocusGroup focuses) {
-        //super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 91, 1)
                 .addIngredients(recipe.getIngredients().get(0));
 

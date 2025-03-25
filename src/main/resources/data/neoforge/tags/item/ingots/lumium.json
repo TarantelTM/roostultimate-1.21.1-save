@@ -1,5 +1,5 @@
 {
   "values": [
-    { "id":"chicken_roost:ingot_lumium", "required": false }
+    "chicken_roost:ingot_lumium"
   ]
 }

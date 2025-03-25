@@ -1,7 +1,5 @@
 package net.tarantel.chickenroost.util;
 
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -68,28 +66,28 @@ public class ChickenConfig {
     }
 
     public static boolean getIsFire(EntityType<?> type) {
-        return IS_FIRE.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_FIRE.getOrDefault(type, false);
     }
     public static boolean getIsProjectile(EntityType<?> type) {
-        return IS_PROJECTILE.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_PROJECTILE.getOrDefault(type, false);
     }
     public static boolean getIsExplosion(EntityType<?> type) {
-        return IS_EXPLOSION.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_EXPLOSION.getOrDefault(type, false);
     }
     public static boolean getIsFall(EntityType<?> type) {
-        return IS_FALL.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_FALL.getOrDefault(type, false);
     }
     public static boolean getIsDrowning(EntityType<?> type) {
-        return IS_DROWNING.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_DROWNING.getOrDefault(type, false);
     }
     public static boolean getIsFreezing(EntityType<?> type) {
-        return IS_FREEZING.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_FREEZING.getOrDefault(type, false);
     }
     public static boolean getIsLightning(EntityType<?> type) {
-        return IS_LIGHTNING.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_LIGHTNING.getOrDefault(type, false);
     }
     public static boolean getIsWither(EntityType<?> type) {
-        return IS_WITHER.getOrDefault(type, false); // Default to 5 minutes (6000 ticks)
+        return IS_WITHER.getOrDefault(type, false);
     }
 
     public static ItemStack getDropStack(EntityType<?> type) {
@@ -97,6 +95,6 @@ public class ChickenConfig {
     }
 
     public static int getEggTime(EntityType<?> type) {
-        return EGG_TIMES.getOrDefault(type, 6000); // Default to 5 minutes (6000 ticks)
+        return EGG_TIMES.getOrDefault(type, 6000);
     }
 }

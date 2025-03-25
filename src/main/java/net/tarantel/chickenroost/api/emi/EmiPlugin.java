@@ -3,7 +3,6 @@ package net.tarantel.chickenroost.api.emi;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -38,7 +37,6 @@ public class EmiPlugin implements dev.emi.emi.api.EmiPlugin {
 
     @Override
     public void register(EmiRegistry registry) {
-        // Tell EMI to add a tab for your category
         registry.addCategory(EGG_CATEGORY);
         registry.addCategory(BREEDER_CATEGORY);
         registry.addCategory(ROOST_CATEGORY);
@@ -46,7 +44,6 @@ public class EmiPlugin implements dev.emi.emi.api.EmiPlugin {
         registry.addCategory(SOUL_EXTRACTOR_CATEGORY);
         registry.addCategory(SOUL_BREEDER_CATEGORY);
 
-        // Add all the workstations your category uses
         registry.addWorkstation(EGG_CATEGORY, EGG_WORKSTATION);
         registry.addWorkstation(BREEDER_CATEGORY, BREEDER_WORKSTATION);
         registry.addWorkstation(ROOST_CATEGORY, ROOST_WORKSTATION);

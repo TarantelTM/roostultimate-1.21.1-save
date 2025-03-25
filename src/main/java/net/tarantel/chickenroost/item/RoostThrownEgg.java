@@ -12,7 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.tarantel.chickenroost.entity.ModEntities;
 
 public class RoostThrownEgg extends ThrowableItemProjectile {
     private static final EntityDimensions ZERO_SIZED_DIMENSIONS = EntityDimensions.fixed(0.0F, 0.0F);
@@ -61,7 +60,6 @@ public class RoostThrownEgg extends ThrowableItemProjectile {
                 for(int j = 0; j < i; ++j) {
                     Entity chicken = customtype.create(this.level());
                     if (chicken != null) {
-                        //chicken.setAge(-24000);
                         chicken.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
                         if (!chicken.fudgePositionAfterSizeChange(ZERO_SIZED_DIMENSIONS)) {
                             break;

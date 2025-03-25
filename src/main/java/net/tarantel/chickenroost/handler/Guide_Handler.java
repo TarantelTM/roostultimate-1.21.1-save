@@ -21,7 +21,6 @@ public class Guide_Handler extends AbstractContainerMenu implements Supplier<Map
     public final Level level;
     public final Player entity;
     public int x, y, z;
-   // public final int page;
     public IItemHandler internal;
     public final Map<Integer, Slot> customSlots = new HashMap<>();
     private boolean bound = false;
@@ -33,7 +32,6 @@ public class Guide_Handler extends AbstractContainerMenu implements Supplier<Map
         this.entity = inv.player;
         this.level = inv.player.level();
         this.internal = new ItemStackHandler(12);
-       // this.page = 0;
         BlockPos pos = null;
         if (extraData != null) {
             pos = extraData.readBlockPos();

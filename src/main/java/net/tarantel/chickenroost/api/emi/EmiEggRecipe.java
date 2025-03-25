@@ -5,8 +5,6 @@ import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.network.chat.Component;
-import net.tarantel.chickenroost.recipes.Soul_Breeder_Recipe;
 import net.tarantel.chickenroost.recipes.ThrowEggRecipe;
 
 public class EmiEggRecipe extends BasicEmiRecipe {
@@ -19,7 +17,6 @@ public class EmiEggRecipe extends BasicEmiRecipe {
 
     @Override
     public void addWidgets(WidgetHolder widgets) {
-        //widgets.addText(Component.literal("Egg Throwing"), 0, 10, 3, false);
         widgets.addTexture(EmiTexture.EMPTY_ARROW, 18, 0);
         widgets.addSlot(inputs.get(0), 0, 0);
         widgets.addAnimatedTexture(EmiTexture.FULL_ARROW, 18, 0,

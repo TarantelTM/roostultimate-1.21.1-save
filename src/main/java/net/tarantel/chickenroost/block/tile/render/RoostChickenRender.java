@@ -27,7 +27,6 @@ public class RoostChickenRender implements BlockEntityRenderer<Roost_Tile> {
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         ItemStack itemStack = pBlockEntity.getRenderStack();
         pPoseStack.pushPose();
-        //pPoseStack.translate(0.5f, 0.65f, 0.5f);
         pPoseStack.scale(1.0f, 1.0f, 1.0f);
         pPoseStack.mulPose(Axis.XP.rotationDegrees(0));
 

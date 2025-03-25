@@ -5,7 +5,6 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-//@REIPluginClient
 public abstract class REIRecipeDisplay<T extends Recipe<CraftingInput>> implements Display {
     protected final T recipe;
     protected List<EntryIngredient> inputs;

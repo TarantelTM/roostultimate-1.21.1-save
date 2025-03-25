@@ -85,7 +85,6 @@ public class RoostRecipeCategory implements IRecipeCategory<Roost_Recipe> {
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, Roost_Recipe recipe, @NotNull IFocusGroup focuses) {
-    	//super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
                         .addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 25, 1)

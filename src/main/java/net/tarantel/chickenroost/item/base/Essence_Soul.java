@@ -2,7 +2,6 @@
 package net.tarantel.chickenroost.item.base;
 
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 
 public class Essence_Soul extends SoulBase {

@@ -15,7 +15,6 @@ public class GsonChickenWriter {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String filePath = FMLPaths.GAMEDIR.get().toString() + "/config/roostultimate/chicken_config_v2.json";
 
-        // Verzeichnisse erstellen
         File directory = new File(FMLPaths.GAMEDIR.get().toString() + "/config/roostultimate");
         if (!directory.exists()) {
             directory.mkdirs();

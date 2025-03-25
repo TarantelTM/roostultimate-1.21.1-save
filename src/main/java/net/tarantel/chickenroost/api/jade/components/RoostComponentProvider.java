@@ -6,7 +6,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec2;
@@ -19,8 +18,6 @@ import snownee.jade.api.*;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IElement;
 import snownee.jade.api.ui.IElementHelper;
-
-import java.util.List;
 
 public enum RoostComponentProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
     INSTANCE;
@@ -84,7 +81,6 @@ public enum RoostComponentProvider implements IBlockComponentProvider, IServerDa
 
             @Nullable ChickenItemBase ChickenItem = (ChickenItemBase) breeder.itemHandler.getStackInSlot(1).getItem();
             @Nullable ItemStack MyChicken = breeder.itemHandler.getStackInSlot(1);
-            //ChickenSeedBase FoodItem = (ChickenSeedBase) breeder.itemHandler.getStackInSlot(1).getItem();
             data.putInt("level", MyChicken.get(ModDataComponents.CHICKENLEVEL.value()));
             data.putInt("xp", MyChicken.get(ModDataComponents.CHICKENXP.value()));
             data.putInt("maxlevel", breeder.LevelList[ChickenItem.currentchickena]);

@@ -5,7 +5,6 @@ import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.world.item.Items;
 import net.tarantel.chickenroost.recipes.Breeder_Recipe;
 
 public class EmiBreederRecipe extends BasicEmiRecipe {

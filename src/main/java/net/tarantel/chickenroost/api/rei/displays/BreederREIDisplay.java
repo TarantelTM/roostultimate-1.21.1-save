@@ -6,11 +6,9 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.resources.ResourceLocation;
 
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.tarantel.chickenroost.ChickenRoostMod;
 import net.tarantel.chickenroost.recipes.Breeder_Recipe;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;

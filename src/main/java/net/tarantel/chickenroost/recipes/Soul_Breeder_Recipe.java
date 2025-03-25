@@ -59,13 +59,6 @@ public class Soul_Breeder_Recipe implements Recipe<RecipeInput> {
         return ingredients;
     }
 
-    /*public Ingredient ingredient0(){
-        return recipeItems.get(0);
-    }
-
-    public Ingredient ingredient1(){
-        return recipeItems.get(1);
-    }*/
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;

@@ -1,6 +1,5 @@
 package net.tarantel.chickenroost.recipes;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
@@ -54,13 +53,6 @@ public class ThrowEggRecipe implements Recipe<RecipeInput> {
         return ingredients;
     }
 
-    /*public Ingredient ingredient0(){
-        return recipeItems.get(0);
-    }
-
-    public Ingredient ingredient1(){
-        return recipeItems.get(1);
-    }*/
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;

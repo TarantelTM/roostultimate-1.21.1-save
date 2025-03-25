@@ -91,8 +91,12 @@ public class AnimatedChicken_4 extends ChickenItemBase implements GeoItem {
                 if (entity == null) {
                     return InteractionResult.PASS;
                 } else {
-                    entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                    entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                    }
+                    if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    }
                     itemstack.consume(1, context.getPlayer());
                     context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
                     level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
@@ -106,14 +110,17 @@ public class AnimatedChicken_4 extends ChickenItemBase implements GeoItem {
                 if (entity == null) {
                     return InteractionResult.PASS;
                 } else {
-                    entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                    entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                    }
+                    if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                    }
                     itemstack.consume(1, context.getPlayer());
                     context.getPlayer().awardStat(Stats.ITEM_USED.get(this));
                     level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
                 }
             }
-            //EntityType<?> entitytype = (BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(context.getItemInHand().getItem().getDefaultInstance().getItemHolder().getRegisteredName().toString())));
 
 
             return InteractionResult.CONSUME;
@@ -139,8 +146,12 @@ public class AnimatedChicken_4 extends ChickenItemBase implements GeoItem {
                     if (entity == null) {
                         return InteractionResultHolder.pass(itemstack);
                     } else {
-                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                            entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                        }
+                        if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                            entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        }
                         itemstack.consume(1, player);
                         player.awardStat(Stats.ITEM_USED.get(this));
                         level.gameEvent(player, GameEvent.ENTITY_PLACE, entity.position());
@@ -153,8 +164,12 @@ public class AnimatedChicken_4 extends ChickenItemBase implements GeoItem {
                     if (entity == null) {
                         return InteractionResultHolder.pass(itemstack);
                     } else {
-                        entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
-                        entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        if(itemstack.has(ModDataComponents.CHICKENLEVEL)) {
+                            entity.getPersistentData().putInt("chickenlevel", itemstack.get(ModDataComponents.CHICKENLEVEL.value()));
+                        }
+                        if(itemstack.has(ModDataComponents.CHICKENXP)) {
+                            entity.getPersistentData().putInt("chickenxp", itemstack.get(ModDataComponents.CHICKENXP.value()));
+                        }
                         itemstack.consume(1, player);
                         player.awardStat(Stats.ITEM_USED.get(this));
                         level.gameEvent(player, GameEvent.ENTITY_PLACE, entity.position());
@@ -169,9 +184,17 @@ public class AnimatedChicken_4 extends ChickenItemBase implements GeoItem {
     @Override
     public void appendHoverText(ItemStack itemstack, TooltipContext context, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, context, list, flag);
+        int level = 0;
+        int xp = 0;
+        if(itemstack.has(ModDataComponents.CHICKENLEVEL)){
+            level = itemstack.get(ModDataComponents.CHICKENLEVEL.value());
+        }
+        if(itemstack.has(ModDataComponents.CHICKENXP)){
+            xp = itemstack.get(ModDataComponents.CHICKENXP.value());
+        }
         list.add(Component.nullToEmpty("\u00A71" + "Tier: " + "\u00A79" + "4"));
-        list.add(Component.nullToEmpty((("\u00A7e") + "Level: " + "\u00A79" + ((itemstack.get(ModDataComponents.CHICKENLEVEL))) + "/" + (((int) Config.maxlevel_tier_4.get())))));
-        list.add(Component.nullToEmpty((("\u00A7a") + "XP: " + "\u00A79" + ((itemstack.get(ModDataComponents.CHICKENXP))) + "/" + (((int) Config.xp_tier_4.get())))));
+        list.add(Component.nullToEmpty((("\u00A7e") + "Level: " + "\u00A79" + level + "/" + (((int) Config.maxlevel_tier_4.get())))));
+        list.add(Component.nullToEmpty((("\u00A7a") + "XP: " + "\u00A79" + xp + "/" + (((int) Config.xp_tier_4.get())))));
         list.add(Component.nullToEmpty("\u00A71 Roost Ultimate"));
     }
     private PlayState predicate(AnimationState animationState) {

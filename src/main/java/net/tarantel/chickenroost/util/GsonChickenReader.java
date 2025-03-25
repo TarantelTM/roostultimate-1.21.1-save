@@ -22,15 +22,7 @@ public class GsonChickenReader {
         if (!file.exists()) {
             System.err.println("File '" + filePath + "' not found.");
             List<ChickenData> items = new ArrayList<>();
-            //region Chicken - Colored
 
-
-
-
-
-
-
-            //endregion
             //region Chicken - Tier 1
             items.add(new ChickenData("Soul Sand Chicken","Monster","c_soulsand", "soulsandchicken", "soulariumchicken", "minecraft:soul_sand", 600, 1, false, true, true, false, true, true, true, true));
             items.add(new ChickenData("Ink Chicken","Mob","c_ink", "blackchicken", "blackchicken", "minecraft:ink_sac", 600, 1, true, true, true, false, true, true, true, true));

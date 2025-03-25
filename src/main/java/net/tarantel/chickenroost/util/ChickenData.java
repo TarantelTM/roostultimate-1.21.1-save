@@ -1,7 +1,5 @@
 package net.tarantel.chickenroost.util;
 
-import net.minecraft.resources.ResourceLocation;
-
 public class ChickenData {
     private String ChickenName;
     private String MobOrMonster;
@@ -20,7 +18,6 @@ public class ChickenData {
     private boolean CanGetFreezingDamage;
     private boolean CanGetLightningDamage;
     private boolean CanGetWitherDamage;
-    //private int ether;
     public Boolean getIsFire() {
         return CanGetFireDamage;
     }
@@ -112,7 +109,7 @@ public class ChickenData {
     public void setMobtexture(String mobtexture) {
         this.mobtexture = mobtexture;
     }
-    public void setDropitem(ResourceLocation dropitem) {
+    public void setDropitem(String dropitem) {
         this.dropitem = dropitem;
     }
 

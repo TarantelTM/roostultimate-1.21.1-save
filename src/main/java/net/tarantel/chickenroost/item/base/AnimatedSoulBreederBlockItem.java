@@ -42,15 +42,9 @@ public class AnimatedSoulBreederBlockItem extends BlockItem implements GeoItem {
         });
     }
 
-   /* @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
-    }*/
-
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        //controllerRegistrar.add(new AnimationController<>(this, "controller", 0, this::predicate));
         controllerRegistrar.add(new AnimationController<>(this, state -> {
 
                 return state.setAndContinue(IDLE_NORMAL);

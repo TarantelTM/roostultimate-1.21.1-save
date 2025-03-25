@@ -1,7 +1,6 @@
 package net.tarantel.chickenroost.recipes;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;

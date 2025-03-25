@@ -139,8 +139,8 @@ public class Soul_Breeder_Tile extends BlockEntity implements MenuProvider, GeoB
 
     public int getScaledProgress() {
         int progresss = progress;
-        int maxProgresss = maxProgress;  // Max Progress
-        int progressArrowSize = 200; // This is the height in pixels of your arrow
+        int maxProgresss = maxProgress;
+        int progressArrowSize = 200;
 
         return maxProgresss != 0 && progresss != 0 ? progresss * progressArrowSize / maxProgresss : 0;
     }
@@ -227,13 +227,9 @@ public class Soul_Breeder_Tile extends BlockEntity implements MenuProvider, GeoB
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             items.set(i, itemHandler.getStackInSlot(i));
         }
-        //items.set(0, itemHandler.getStackInSlot(0));
-        //items.set(1, itemHandler.getStackInSlot(2));
-        //itemStack.getItem().components().getOrDefault(DataComponents.CONTAINER, items);
         itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(inventory.getItems()));
         block.setItem(0, itemStack.copy());
 
-        //System.out.println(itemStack.get(DataComponents.CONTAINER));
         Containers.dropContents(Objects.requireNonNull(this.level), this.worldPosition, block);
     }
 
@@ -309,8 +305,6 @@ public class Soul_Breeder_Tile extends BlockEntity implements MenuProvider, GeoB
             recipe = level.getRecipeManager().getRecipeFor(ModRecipes.SOUL_BREEDING_TYPE.get(), getRecipeInput(inventory), level);
             if(recipe.isPresent()){
                 entity.maxProgress = ( Config.soulbreed_speedtimer.get() * recipe.get().value().time);
-                //System.out.println(recipe.get().value().time);
-                //System.out.println("max:" + entity.maxProgress);
             }
         }
 

@@ -129,8 +129,8 @@ public class Trainer_Tile extends BlockEntity implements MenuProvider, GeoBlockE
 
     public int getScaledProgress() {
         int progresss = progress;
-        int maxProgresss = maxProgress;  // Max Progress
-        int progressArrowSize = 200; // This is the height in pixels of your arrow
+        int maxProgresss = maxProgress;
+        int progressArrowSize = 200;
 
         return maxProgresss != 0 && progresss != 0 ? progresss * progressArrowSize / maxProgresss : 0;
     }
@@ -210,13 +210,9 @@ public class Trainer_Tile extends BlockEntity implements MenuProvider, GeoBlockE
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             items.set(i, itemHandler.getStackInSlot(i));
         }
-        //items.set(0, itemHandler.getStackInSlot(0));
-        //items.set(1, itemHandler.getStackInSlot(2));
-        //itemStack.getItem().components().getOrDefault(DataComponents.CONTAINER, items);
         itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(inventory.getItems()));
         block.setItem(0, itemStack.copy());
 
-        //System.out.println(itemStack.get(DataComponents.CONTAINER));
         Containers.dropContents(Objects.requireNonNull(this.level), this.worldPosition, block);
     }
 
@@ -246,13 +242,6 @@ public class Trainer_Tile extends BlockEntity implements MenuProvider, GeoBlockE
                 if (pEntity.progress >= pEntity.maxProgress) {
                     craftItem(pEntity);
                 }
-                /*else
-                {
-                    System.out.println("555555555555555");
-                    pEntity.resetProgress();
-                    pEntity.triggerAnim("controller", "idle");
-                    setChanged(level, pos, state);
-                }*/
             }
         }
         else
@@ -285,7 +274,17 @@ public class Trainer_Tile extends BlockEntity implements MenuProvider, GeoBlockE
         for (int i = 0; i < pEntity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, pEntity.itemHandler.getStackInSlot(i));
         }
-            int ChickenXP = MyChicken.get(ModDataComponents.CHICKENXP.value());
+        int ChickenLevel;
+        int ChickenXP;
+        if(MyChicken.has(ModDataComponents.CHICKENLEVEL) && MyChicken.has(ModDataComponents.CHICKENXP)){
+            ChickenXP = MyChicken.get(ModDataComponents.CHICKENXP.value());
+        }
+        else {
+            ChickenLevel = 0;
+            ChickenXP = 0;
+            MyChicken.set(ModDataComponents.CHICKENLEVEL.value(), ChickenLevel);
+            MyChicken.set(ModDataComponents.CHICKENXP.value(), ChickenXP);
+        }
 
             if (pEntity.itemHandler.getStackInSlot(0).getItem() instanceof ChickenItemBase) {
 

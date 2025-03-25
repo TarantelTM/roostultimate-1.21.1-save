@@ -32,7 +32,6 @@ public class AnimatedOrbItem extends RoostUltimateItem implements GeoItem {
     }
 
     private PlayState predicate(AnimationState animationState) {
-        //animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
 

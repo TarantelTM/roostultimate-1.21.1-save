@@ -3,9 +3,6 @@ package net.tarantel.chickenroost;
 import com.mojang.logging.LogUtils;
 import de.cech12.bucketlib.api.BucketLibApi;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.SpawnPlacementTypes;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -34,30 +31,26 @@ import java.util.Random;
 
 @Mod(ChickenRoostMod.MODID)
 public class ChickenRoostMod {
-    //region
     public static final String MODID = "chicken_roost";
     private static final Logger LOGGER = LogUtils.getLogger();
-    //endregion
     public ChickenRoostMod(IEventBus bus, ModContainer modContainer) throws FileNotFoundException {
-        bus.addListener(this::commonSetup);
         GsonChickenReader.readItemsFromFile();
         ModCreativeModeTabs.register(bus);
         ModDataComponents.register(bus);
+        ModEntities.register(bus);
         ModItems.register(bus);
-        ModEntities.REGISTRY.register(bus);
         ModEntitySpawnMonster.SERIALIZER.register(bus);
         ModEntitySpawnMob.SERIALIZER.register(bus);
-
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
         ModBlocks.BLOCKS.register(bus);
         ModBlockEntities.register(bus);
         bus.addListener(this::registerCapabilities);
-
         ModHandlers.register(bus);
         ModRecipes.RECIPE_SERIALIZERS.register(bus);
         ModRecipes.RECIPE_TYPES.register(bus);
         NeoForge.EVENT_BUS.register(this);
         bus.addListener(this::addCreative);
-        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
+        bus.addListener(this::commonSetup);
 
     }
 
@@ -75,7 +68,6 @@ public class ChickenRoostMod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        // Do something when the server starts
         LOGGER.info("HELLO from server starting");
     }
     public void addCreative(BuildCreativeModeTabContentsEvent event)  {
@@ -104,9 +96,9 @@ public class ChickenRoostMod {
 
         @SubscribeEvent
         public static void sendImc(RegisterCapabilitiesEvent evt) {
-            //BucketLibApi.registerBucket(evt, ModItems.TESTBUCKET.getId());
             BucketLibApi.registerBucket(evt, ModItems.WATER_EGG.getId());
             BucketLibApi.registerBucket(evt, ModItems.LAVA_EGG.getId());
+            ModEntities.initChickenConfig();
         }
         @SubscribeEvent
         public static void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {

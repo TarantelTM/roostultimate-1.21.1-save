@@ -23,7 +23,7 @@ repositories {
 }
 
 base {
-    archivesName = "roostultimate" + "-neoforge_" + neo_version + "-curseforge"
+    archivesName = "roostultimate_"+ minecraft_version + "-curseforge"
 }
 //base {
 //    archivesName = "${project.mod_id}-${project.minecraft_version}"

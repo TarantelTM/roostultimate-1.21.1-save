@@ -1,24 +1,23 @@
 
 package net.tarantel.chickenroost.entity;
 
-import de.cech12.bucketlib.api.BucketLibComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.tarantel.chickenroost.ChickenRoostMod;
-import net.tarantel.chickenroost.entity.chickens.*;
 import net.tarantel.chickenroost.item.ModItems;
 import net.tarantel.chickenroost.util.ChickenConfig;
 import net.tarantel.chickenroost.util.ChickenData;
@@ -32,28 +31,17 @@ public class ModEntities {
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE,
 			ChickenRoostMod.MODID);
 
+	public static final DeferredHolder<EntityType<?>, EntityType<BaseChickenEntity>> A_CHICKEN_LAVA = registerMonsterFireImmun("c_lava",
+			BaseChickenEntity::new,
+			0.4f, 0.7f,
+			0x302219, 0xACACAC
+	);
 
-	/*public static <T extends Mob> DeferredHolder<EntityType<?>, EntityType<T>> registerMob(String name, EntityType.EntityFactory<T> entity,
-																						   float width, float height, int primaryEggColor, int secondaryEggColor) {
-		DeferredHolder<EntityType<?>, EntityType<T>> entityType = ENTITIES.register(name,
-				() -> EntityType.Builder.of(entity, MobCategory.CREATURE).sized(width, height).build(name));
-
-		return entityType;
-	}
-	public static <T extends Mob> DeferredHolder<EntityType<?>, EntityType<T>> registerMonster(String name, EntityType.EntityFactory<T> entity,
-																						   float width, float height, int primaryEggColor, int secondaryEggColor) {
-		DeferredHolder<EntityType<?>, EntityType<T>> entityType = ENTITIES.register(name,
-				() -> EntityType.Builder.of(entity, MobCategory.MONSTER).sized(width, height).build(name));
-
-		return entityType;
-	}*/
-
-
-	public static final DeferredHolder<EntityType<?>, EntityType<AChickenLavaEntity>> A_CHICKEN_LAVA = registerMonster("c_lava", AChickenLavaEntity::new,
-			0.4f, 0.7f, 0x302219, 0xACACAC);
-
-	public static final DeferredHolder<EntityType<?>, EntityType<AChickenWaterEntity>> A_CHICKEN_WATER = registerMob("c_water", AChickenWaterEntity::new,
-			0.4f, 0.7f, 0x302219, 0xACACAC);
+	public static final DeferredHolder<EntityType<?>, EntityType<BaseChickenEntity>> A_CHICKEN_WATER = registerMob("c_water",
+			BaseChickenEntity::new,
+			0.4f, 0.7f,
+			0x302219, 0xACACAC
+	);
 
 	public static <T extends Mob> DeferredHolder<EntityType<?>, EntityType<T>> registerMob(
 			String name, EntityType.EntityFactory<T> factory,
@@ -128,7 +116,6 @@ public class ModEntities {
 			}
 
 		}
-		//return registerMob(idd, BaseChickenEntity::new, 0.4f, 0.7f, 0x302219,0xACACAC);
 	}
 
 
@@ -143,24 +130,16 @@ public class ModEntities {
 
 		ItemStack lavaegg = new ItemStack(ModItems.LAVA_EGG.get());
 		ItemStack wateregg = new ItemStack(ModItems.WATER_EGG.get());
-		CompoundTag fluidTagLava = new CompoundTag();
-		CompoundTag fluidTagWater = new CompoundTag();
-		fluidTagLava.putString("FluidName", "minecraft:lava");
-		fluidTagLava.putInt("Amount", 1000);
-		fluidTagWater.putString("FluidName", "minecraft:water");
-		fluidTagWater.putInt("Amount", 1000);
-
-// Create a new CompoundTag for the root NBT data
-		CompoundTag nbtDataLava = new CompoundTag();
-		CompoundTag nbtDataWater = new CompoundTag();
-		nbtDataLava.put("Fluid", fluidTagLava);
-		nbtDataWater.put("Fluid", fluidTagWater);
-
-// Set the NBT data to the ItemStack
-		//lavaegg.setTag(nbtDataLava);
-		//wateregg.setTag(nbtDataWater);
-		wateregg.getOrDefault(BucketLibComponents.BUCKET_CONTENT, CustomData.of(nbtDataWater));
-		lavaegg.getOrDefault(BucketLibComponents.BUCKET_CONTENT, CustomData.of(nbtDataLava));
+		IFluidHandlerItem fluidHandlerlava = lavaegg.getCapability(Capabilities.FluidHandler.ITEM);
+		if (fluidHandlerlava != null) {
+			FluidStack lavaFluidStack = new FluidStack(Fluids.LAVA, 1000);
+			fluidHandlerlava.fill(lavaFluidStack, IFluidHandlerItem.FluidAction.EXECUTE);
+		}
+		IFluidHandlerItem fluidHandlerwater = wateregg.getCapability(Capabilities.FluidHandler.ITEM);
+		if (fluidHandlerwater != null) {
+			FluidStack lavaFluidStack = new FluidStack(Fluids.WATER, 1000);
+			fluidHandlerwater.fill(lavaFluidStack, IFluidHandlerItem.FluidAction.EXECUTE);
+		}
 
 		List<ChickenData> readItems = GsonChickenReader.readItemsFromFile();
 		if(!readItems.isEmpty()){

@@ -16,7 +16,6 @@ import net.minecraft.network.chat.Component;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.tarantel.chickenroost.ChickenRoostMod;
 import net.tarantel.chickenroost.block.blocks.ModBlocks;
 import net.tarantel.chickenroost.recipes.Breeder_Recipe;
@@ -88,7 +87,6 @@ public class BreederRecipeCategory implements IRecipeCategory<Breeder_Recipe> {
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, Breeder_Recipe recipe, @NotNull IFocusGroup focuses) {
-        //super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 21, 1)
                 .addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 0, 1)

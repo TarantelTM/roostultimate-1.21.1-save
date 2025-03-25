@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -23,7 +22,7 @@ import software.bernie.geckolib.util.RenderUtil;
 
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
+
 @SuppressWarnings("deprecation")
 public class AnimatedChickenStick extends RoostUltimateItem implements GeoItem {
 
@@ -75,14 +74,6 @@ public class AnimatedChickenStick extends RoostUltimateItem implements GeoItem {
         WrenchTool.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(),
                 context.getClickedPos().getZ());
 
-        /*if (context.getLevel().isClientSide()) {
-            BlockPos positionClicked = context.getClickedPos();
-            Player player = context.getPlayer();e
-            boolean foundBlock = false;
-            spawnFoundParticles(context, positionClicked);
-
-            return InteractionResult.SUCCESS;
-        }*/
         return InteractionResult.SUCCESS;
     }
 

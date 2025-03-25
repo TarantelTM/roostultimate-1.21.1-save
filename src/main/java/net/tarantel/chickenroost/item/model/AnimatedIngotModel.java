@@ -3,7 +3,6 @@ package net.tarantel.chickenroost.item.model;
 import software.bernie.geckolib.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 import net.tarantel.chickenroost.ChickenRoostMod;
-import net.tarantel.chickenroost.item.base.AnimatedChicken_1;
 import net.tarantel.chickenroost.item.base.AnimatedIngotItem;
 
 public class AnimatedIngotModel extends GeoModel<AnimatedIngotItem> {

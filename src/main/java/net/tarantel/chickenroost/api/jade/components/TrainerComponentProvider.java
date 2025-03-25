@@ -10,10 +10,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec2;
 import net.tarantel.chickenroost.api.jade.JadePlugin;
-import net.tarantel.chickenroost.block.tile.Roost_Tile;
 import net.tarantel.chickenroost.block.tile.Trainer_Tile;
 import net.tarantel.chickenroost.item.base.ChickenItemBase;
-import net.tarantel.chickenroost.item.base.ChickenSeedBase;
 import net.tarantel.chickenroost.util.ModDataComponents;
 import org.jetbrains.annotations.Nullable;
 import snownee.jade.api.*;
@@ -51,7 +49,6 @@ public enum TrainerComponentProvider implements IBlockComponentProvider, IServer
             if (!inventory.get(1).isEmpty()){
                 tooltip.add(helper.item((ItemStack) inventory.get(1)).align(IElement.Align.LEFT));
             }
-            //tooltip.append(helper.item((ItemStack)inventory.get(1)).align(IElement.Align.LEFT));
             tooltip.append(helper.spacer(4, 0).align(IElement.Align.LEFT));
             tooltip.append(helper.progress((float)progress / (float)total).translate(new Vec2(-2.0F, 0.0F)).align(IElement.Align.LEFT));
             if (!inventory.get(0).isEmpty()) {
@@ -87,7 +84,6 @@ public enum TrainerComponentProvider implements IBlockComponentProvider, IServer
 
                 @Nullable ChickenItemBase ChickenItem = (ChickenItemBase) breeder.itemHandler.getStackInSlot(0).getItem();
                 @Nullable ItemStack MyChicken = breeder.itemHandler.getStackInSlot(0);
-                //ChickenSeedBase FoodItem = (ChickenSeedBase) breeder.itemHandler.getStackInSlot(1).getItem();
                 data.putInt("level", MyChicken.get(ModDataComponents.CHICKENLEVEL.value()));
                 data.putInt("xp", MyChicken.get(ModDataComponents.CHICKENXP.value()));
                 data.putInt("maxlevel", breeder.LevelList[ChickenItem.currentchickena]);

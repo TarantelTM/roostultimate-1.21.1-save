@@ -24,7 +24,6 @@ public class SoulBreedingRecipeCategory implements IRecipeCategory<Soul_Breeder_
     public final static ResourceLocation UID = ChickenRoostMod.ownresource("soul_breeding");
     public final static ResourceLocation ARROWBACK = ChickenRoostMod.ownresource("textures/screens/arrowback.png");
     public final static ResourceLocation SLOT = ChickenRoostMod.ownresource("textures/screens/slot.png");
-    //public static final RecipeType<Soul_Breeder_Recipe> RECIPE_TYPE = RecipeType.create(ChickenRoostMod.MODID, "soul_breeding", Soul_Breeder_Recipe.class);
     public static final RecipeType<Soul_Breeder_Recipe> RECIPE_TYPE = new RecipeType<>(UID, Soul_Breeder_Recipe.class);
     private final IDrawable background;
     private final IDrawable icon;
@@ -84,7 +83,6 @@ public class SoulBreedingRecipeCategory implements IRecipeCategory<Soul_Breeder_
 
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, Soul_Breeder_Recipe recipe, @NotNull IFocusGroup focuses) {
-    	//super.setRecipe(builder, recipe, focuses);
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
                 .addIngredients(recipe.getIngredients().get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 25, 1)

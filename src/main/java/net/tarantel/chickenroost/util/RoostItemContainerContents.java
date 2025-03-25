@@ -145,29 +145,18 @@ public final class RoostItemContainerContents {
         return this.hashCode;
     }
 
-    /**
-     * Neo:
-     * {@return the number of slots in this container}
-     */
+
     public int getSlots() {
         return this.items.size();
     }
 
-    /**
-     * Neo: Gets a copy of the stack at a particular slot.
-     *
-     * @param slot The slot to check. Must be within [0, {@link #getSlots()}]
-     * @return A copy of the stack in that slot
-     * @throws UnsupportedOperationException if the provided slot index is out-of-bounds.
-     */
+
     public ItemStack getStackInSlot(int slot) {
         validateSlotIndex(slot);
         return this.items.get(slot).copy();
     }
 
-    /**
-     * Neo: Throws {@link UnsupportedOperationException} if the provided slot index is invalid.
-     */
+
     private void validateSlotIndex(int slot) {
         if (slot < 0 || slot >= getSlots()) {
             throw new UnsupportedOperationException("Slot " + slot + " not in valid range - [0," + getSlots() + ")");

@@ -37,8 +37,7 @@ import net.minecraft.world.level.gameevent.GameEvent.Context;
 import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class ChickenBlockItem extends RoostUltimateItem {
-    /** @deprecated */
-    @Deprecated
+
     private final Block block;
 
     public ChickenBlockItem(Block block, Properties properties, int currentmaxxp) {
@@ -97,8 +96,6 @@ public class ChickenBlockItem extends RoostUltimateItem {
         }
     }
 
-    /** @deprecated */
-    @Deprecated
     protected SoundEvent getPlaceSound(BlockState state) {
         return state.getSoundType().getPlaceSound();
     }

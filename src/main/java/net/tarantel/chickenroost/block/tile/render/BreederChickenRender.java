@@ -10,17 +10,12 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.tarantel.chickenroost.block.blocks.Breeder_Block;
 import net.tarantel.chickenroost.block.tile.Breeder_Tile;
-import net.tarantel.chickenroost.util.ModDataComponents;
 
 public class BreederChickenRender implements BlockEntityRenderer<Breeder_Tile> {
     public BreederChickenRender(BlockEntityRendererProvider.Context context) {

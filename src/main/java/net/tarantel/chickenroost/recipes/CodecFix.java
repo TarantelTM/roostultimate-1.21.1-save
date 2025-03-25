@@ -3,14 +3,8 @@ package net.tarantel.chickenroost.recipes;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
-
-
-import java.util.Optional;
 
 public final class CodecFix {
     private CodecFix() {}

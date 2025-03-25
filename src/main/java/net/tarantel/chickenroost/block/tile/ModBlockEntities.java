@@ -1,8 +1,6 @@
 package net.tarantel.chickenroost.block.tile;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlimeBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.capabilities.Capabilities;
